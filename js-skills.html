@@ -463,56 +463,98 @@
 <script>
   "use strict";
   // put your code here
+$('#play-guessing-game-2').click(function () {
+    var randomNum = Math.floor((Math.random() * 100) + 1);
+    $('#number-guessing-msg').html("Try and guess my number between 1 and 100!");
+    $('#number-guessed').prop('disabled', false);
+    $('#try-this-number').prop('disabled', false);
+    $('#play-guessing-game-2').prop('disabled', true);
 
+    $('#guessing-game-2-form').submit(function (evt) {
+      evt.preventDefault();
+      var guess = $('#number-guessed').val();
+      if(guess < randomNum) {
+        $('#number-guessing-msg').html("Too low. Guess again!");
+        guess = $('#number-guessed').val();
+      } else if(guess > randomNum) {
+        $('#number-guessing-msg').html("Too high. Guess again!");
+        guess = $('#number-guessed').val();
+      } else {
+        $('#number-guessing-msg').html("Success you win!");
+        $('#number-guessed').val('');
+        $('#number-guessed').prop('disabled', true);
+        $('#try-this-number').prop('disabled', true);
+        $('#play-guessing-game-2').prop('disabled', false);
+      }
+    })
+  })
+
+//EVERYTHING BELOW IS OTHER THINGS I TRIED-- bit of a mess haha!
   // function generateNumber () {
-  var randomNum = Math.floor((Math.random() * 100) + 1);
+  // var randomNum = Math.floor((Math.random() * 100) + 1);
   // return randomNum;
   // }
 
-  function guessingGame () { 
+  // function guessingGame () { 
       // generateNumber();
       // var randomNum = generateNumber();
       // var randomNum = Math.floor((Math.random() * 100) + 1);
-      var guess = $('#number-guessed').val();
+      // var guess = $('#number-guessed').val();
       // if (guess !== randomNum) {
       //   playing === True;
       // } else {
       //   playing === False;
       // }
       // while playing {
-        if(guess < randomNum) {
-          $('#number-guessing-msg').html("Too low. Guess again!");
-          guess = $('#number-guessed').val();
-        } else if(guess > randomNum) {
-          $('#number-guessing-msg').html("Too high. Guess again!");
-          guess = $('#number-guessed').val();
-        } else {
-          $('#number-guessing-msg').html("Success you win!");
-          $('#number-guessed').val('');
-          $('#number-guessed').prop('disabled', true);
-          $('#try-this-number').prop('disabled', true);
-          $('#play-guessing-game-2').prop('disabled', false);
+  //       if(guess < randomNum) {
+  //         $('#number-guessing-msg').html("Too low. Guess again!");
+  //         guess = $('#number-guessed').val();
+  //       } else if(guess > randomNum) {
+  //         $('#number-guessing-msg').html("Too high. Guess again!");
+  //         guess = $('#number-guessed').val();
+  //       } else {
+  //         $('#number-guessing-msg').html("Success you win!");
+  //         $('#number-guessed').val('');
+  //         $('#number-guessed').prop('disabled', true);
+  //         $('#try-this-number').prop('disabled', true);
+  //         $('#play-guessing-game-2').prop('disabled', false);
+  //         // break;
+  //     }
+  //   }
 
-          // break;
-        // }
-      }
-    }
-    // }
+  // $('#play-guessing-game-2').click(function () {
+  //   var randomNum = Math.floor((Math.random() * 100) + 1);
+  //   $('#number-guessing-msg').html("Try and guess my number between 1 and 100!");
+  //   $('#number-guessed').prop('disabled', false);
+  //   $('#try-this-number').prop('disabled', false);
+  //   $('#play-guessing-game-2').prop('disabled', true);
 
-  $('#play-guessing-game-2').click(function () {
-    // evt.preventDefault();
-    // var randomNum = Math.floor((Math.random() * 100) + 1);
-    $('#number-guessing-msg').html("Try and guess my number between 1 and 100!");
-    $('#number-guessed').prop('disabled', false);
-    $('#try-this-number').prop('disabled', false);
-    $('#play-guessing-game-2').prop('disabled', true);
-    $('#guessing-game-2-form').submit(function (evt) {
-      evt.preventDefault();
-      // var guess = $('#number-guessed').val();
-      guessingGame();
-      // $('#number-guessing-msg').html("Your guess was: " + guess);
-    })
-  })
+  //   $('#guessing-game-2-form').submit(function (evt) {
+  //     evt.preventDefault();
+  //     // var guess = $('#number-guessed').val();
+  //     // guessingGame();
+  //     // $('#number-guessing-msg').html("Your guess was: " + guess);
+  //     // function () {
+  //       var guess = $('#number-guessed').val();
+  //       // do {
+  //         if(guess < randomNum) {
+  //           $('#number-guessing-msg').html("Too low. Guess again!");
+  //           guess = $('#number-guessed').val();
+  //         } else if(guess > randomNum) {
+  //           $('#number-guessing-msg').html("Too high. Guess again!");
+  //           guess = $('#number-guessed').val();
+  //         } else {
+  //           $('#number-guessing-msg').html("Success you win!");
+  //           $('#number-guessed').val('');
+  //           $('#number-guessed').prop('disabled', true);
+  //           $('#try-this-number').prop('disabled', true);
+  //           $('#play-guessing-game-2').prop('disabled', false);
+  //       }
+  //     // }
+  //       // while (guess !== randomNum); 
+  //   })
+  // })
+
 </script>
 
 
@@ -552,16 +594,37 @@
     var PRIME_COLORS = ['orange', 'midnightblue', 'darkgoldenrod', 'green', 'purple'];
   // put the rest of your code here
   $('#make-prime-boxes').click(function () {
+    var firstColor = PRIME_COLORS[0];
+    var secondColor = PRIME_COLORS[1];
+    var thirdColor = PRIME_COLORS[2];
+    var fourthColor = PRIME_COLORS[3];
+    var fifthColor = PRIME_COLORS[4];
+
+    // for (var i=1; i < 12; i++) {
+    //   for (var j=2; j < i; j++) {
+    //   if(i%j === 0)
+    //     p
+    //   }
+    // }
+    var primeOne = 2;
+    var primeSecond = 3;
+    var primeThird = 5;
+    var primeFourth = 7;
+    var primeFifth = 11;
+    setTimeout( function () {
     $('#prime-box-area').html(
-      "<div class=\"prime-box\" style=\"background-color: orange\">prime-one</div>");
-    $('#prime-box-area').append(
-      "<div class=\"prime-box\" style=\"background-color: midnightblue\">3</div>");
-    $('#prime-box-area').append(
-      "<div class=\"prime-box\" style=\"background-color: darkgoldenrod\">5</div>");
-    $('#prime-box-area').append(
-      "<div class=\"prime-box\" style=\"background-color: green\">7</div>");
-    $('#prime-box-area').append(
-      "<div class=\"prime-box\" style=\"background-color: purple\">11</div>");
+      "<div id=\"first-box\" class=\"prime-box\"</div>");
+    $('#first-box').addAttr("style", "background-color: " + firstColor)
+     // + ">" + primeOne + "</div>");
+    // $('#prime-box-area').append(
+    //   "<div id=\"second-box\"class=\"prime-box\" style=\"background-color: " + secondColor + ">" + primeSecond + "</div>");
+    // $('#prime-box-area').append(
+    //   "<div id=\"third-box\"class=\"prime-box\" style=\"background-color: " + thirdColor + ">" + primeThird + "</div>");
+    // $('#prime-box-area').append(
+    //   "<div id=\"fourth-box\"class=\"prime-box\" style=\"background-color: " + fourthColor + ">" + primeFourth + "</div>");
+    // $('#prime-box-area').append(
+    //   "<div id=\"fifth-box\"class=\"prime-box\" style=\"background-color: " + fifthColor + ">" + primeFifth + "</div>");
+  })
   })
 </script>
 
